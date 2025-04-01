@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akza <akza@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 07:13:17 by anktiri           #+#    #+#             */
-/*   Updated: 2025/03/30 10:12:30 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/03/31 14:34:34 by akza             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-void    message(void)
+void	message(void)
 {
 	ft_putstr_fd("\e[1;31m## error - incorrect syntax ##\n\n\e[0m", 1);
 	ft_putstr_fd("\e[1;92m./fractol mandelbrot\n\e[0m", 1);

@@ -1,20 +1,24 @@
 NAME = fractol
 NAME_BONUS = fractol_bonus
 
-SRC = mandatory/main.c mandatory/utils.c
+SRC = mandatory/main.c mandatory/utils.c mandatory/init.c mandatory/render.c \
+
 #SRCB = src/bonus/main_bonus.c src/bonus/burning_bonus.c src/bonus/utils_bonus.c src/bonus/events_bonus.c
 OBJ = $(SRC:.c=.o)
 #OBJB = $(SRCB:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I includes
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+# CFLAGS = -Wall -Wextra -Werror -I includes
+# MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g -I includes -I minilibx-linux
+MLX = -L minilibx-linux -lmlx -lX11 -lXext -lm
 
 all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
 
-%.o: %.c
+%.o: %.c mandatory/fractol.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
