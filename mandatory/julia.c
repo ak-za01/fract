@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akza <akza@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 14:43:41 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/01 03:12:11 by akza             ###   ########.fr       */
+/*   Created: 2025/04/05 00:32:41 by anktiri           #+#    #+#             */
+/*   Updated: 2025/04/05 06:37:11 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-void	put_pixel(t_image *img, int x, int y, int color)
+static void	put_pixel(t_image *img, int x, int y, int color)
 {
 	int	offset;
 
@@ -20,39 +20,35 @@ void	put_pixel(t_image *img, int x, int y, int color)
 	*(unsigned int *)(img->pixel_ptr + offset) = color;
 }
 
-unsigned int	get_color(int iter, t_mlx *fract)
+static unsigned int	get_color(int iter, t_mlx *fract)
 {
-	int	red;
-	int	green;
-	int	blue;
-
 	if (iter == fract->iteration)
 		return (BLACK);
-	red = (iter * 25) % 256;
-	green = (iter * 2) % 256;
-	blue = (iter * 5) % 256;
-	return ((red << 16) + (green << 8) + blue);
+	fract->red = (iter * 2) % 256;
+	fract->green = (iter * 6) % 256;
+	fract->blue = (iter * 12) % 256;
+	return ((fract->red << 16) + (fract->green << 8) + fract->blue);
 }
 
-int	iteration(t_mlx *id)
+static int	iteration(t_mlx *id)
 {
 	int		iter;
 	double	zr_tmp;
 
 	iter = 0;
-	id->z.r = 0;
-	id->z.i = 0;
+	id->z.r = id->c.r;
+	id->z.i = id->c.i;
 	while (((pow(id->z.r, 2) + pow(id->z.i, 2)) < 4) && iter < id->iteration)
 	{
 		zr_tmp = pow(id->z.r, 2) - pow(id->z.i, 2);
-		id->z.i = 2 * id->z.r * id->z.i + id->c.i;
-		id->z.r = zr_tmp + id->c.r;
+		id->z.i = 2 * id->z.r * id->z.i + id->julia_c.i;
+		id->z.r = zr_tmp + id->julia_c.r;
 		iter++;
 	}
 	return (iter);
 }
 
-void	fract_render(t_mlx *fract)
+void	julia_render(t_mlx *fract)
 {
 	int	iter;
 	int	x;
@@ -64,8 +60,8 @@ void	fract_render(t_mlx *fract)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			fract->c.r = ((double)x * (REAL_MAX - REAL_MIN) / WIDTH) + REAL_MIN;
-			fract->c.i = ((double)y * (IMG_MAX - IMG_MIN) / HEIGHT) + IMG_MIN;
+			fract->c.r = ((((double)x * (REAL_MAX - REAL_MIN) / WIDTH) + REAL_MIN) * fract->zoom) + fract->axis_x;
+			fract->c.i = ((((double)y * (IMG_MAX - IMG_MIN) / HEIGHT) + IMG_MIN) * fract->zoom) + fract->axis_y;
 			iter = iteration(fract);
 			put_pixel(&fract->img, x, y, get_color(iter, fract));
 		}

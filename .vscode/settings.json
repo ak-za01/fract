@@ -1,6 +1,8 @@
 {
 	"editor.insertSpaces": false,
 	"files.associations": {
-		"fract_ol.h": "c"
+		"fract_ol.h": "c",
+		"stdio.h": "c",
+		"complex": "c"
 	}
 }

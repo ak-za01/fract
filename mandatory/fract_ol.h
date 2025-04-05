@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fract_ol.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akza <akza@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:23:53 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/01 03:07:55 by akza             ###   ########.fr       */
+/*   Updated: 2025/04/05 05:02:46 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-// # include "../include/MLX42/include/MLX42/MLX42.h"
+// # include "../mlx/mlx.h"
 # include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -53,17 +53,28 @@ typedef struct s_mlx
 	t_image		img;
 	t_complex	c;
 	t_complex	z;
-	int			iteration;
+	t_complex	julia_c;
+	double		iteration;
 	double		axis_x;
 	double		axis_y;
 	double		zoom;
-
+	int			red;
+	int			green;
+	int			blue;
+	unsigned int			color;
 }	t_mlx;
 
 int		ft_strncmp(char *s1, char *s2, int n);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_print(char *s, int fd);
 void	message(void);
 void	init_fract(t_mlx *fract);
-void	fract_render(t_mlx *fract);
+void	mandelbrot_render(t_mlx *fract);
+int		close_window(t_mlx *fract);
+int		handle_key(int key, t_mlx *fract);
+int		handle_mouse(int button, int x, int y, t_mlx *fract);
+int		handle_arg(int ac, char **av, t_mlx *fract);
+void	julia_render(t_mlx *fract);
+void	render(t_mlx *fract);
+
 
 #endif
