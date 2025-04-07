@@ -3,6 +3,9 @@
 	"files.associations": {
 		"fract_ol.h": "c",
 		"stdio.h": "c",
-		"complex": "c"
+		"complex": "c",
+		"__locale": "c",
+		"locale": "c",
+		"fract_ol_bonus.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:32:41 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/05 06:37:11 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/05 12:16:06 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ void	julia_render(t_mlx *fract)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			fract->c.r = ((((double)x * (REAL_MAX - REAL_MIN) / WIDTH) + REAL_MIN) * fract->zoom) + fract->axis_x;
-			fract->c.i = ((((double)y * (IMG_MAX - IMG_MIN) / HEIGHT) + IMG_MIN) * fract->zoom) + fract->axis_y;
+			fract->c.r = ((((double)x * (REAL_MAX - REAL_MIN) / WIDTH)
+						+ REAL_MIN) * fract->zoom) + fract->axis_x;
+			fract->c.i = -((((double)y * (IMG_MAX - IMG_MIN) / HEIGHT)
+						+ IMG_MIN) * fract->zoom) + fract->axis_y;
 			iter = iteration(fract);
 			put_pixel(&fract->img, x, y, get_color(iter, fract));
 		}
 	}
-	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr,
-		fract->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img.img_ptr,
+		0, 0);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   helper_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 01:09:30 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/07 06:14:01 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/07 11:16:23 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract_ol.h"
+#include "fract_ol_bonus.h"
 
-static int	ft_atoi(char *str, int *i, int *sign)
+static double	ft_atoi(char *str, int *i, int *sign)
 {
 	double	result;
 
@@ -61,7 +61,9 @@ static double	ft_atod(char *str)
 	i = 0;
 	result = 0.0;
 	result = ft_atoi(str, &i, &sign);
-	if (str[i] == '.')
+	if (i == 0 && str[i] == '.')
+		return (3);
+	else if (str[i] == '.' && (str[i + 1]))
 		i++;
 	result += decimal_part(str, &i);
 	if (result >= 2 || result * sign <= -2)
