@@ -6,16 +6,16 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:23:53 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/07 08:42:26 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:36:28 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_BONUS_H
 # define FRACT_OL_BONUS_H
 
-// # include "../mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <math.h>
-# include <mlx.h>
+// # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -76,7 +76,6 @@ int					close_window(t_mlx *fract);
 int					handle_key(int key, t_mlx *fract);
 int					handle_mouse(int button, int x, int y, t_mlx *fract);
 int					change_color(int f, int key, t_mlx *fract);
-void				reset(t_mlx *fract);
 
 // mlx functions
 void				init_fract(t_mlx *fract, char *title);
