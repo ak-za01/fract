@@ -6,7 +6,7 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:31:28 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/09 05:49:19 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/09 07:20:57 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	iteration(int key, t_mlx *fract)
 		fract->iteration += 50;
 	return (0);
 }
+
 int	handle_key(int key, t_mlx *fract)
 {
 	if (key == 53)

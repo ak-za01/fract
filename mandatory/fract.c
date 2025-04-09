@@ -6,7 +6,7 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:24:43 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/08 21:51:07 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/09 07:20:29 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,10 @@ static int	handle_input(int ac, char **av, t_mlx *fract)
 	return (0);
 }
 
-void	ll(void)
-{
-	system("leaks -q fractol");
-}
-
 int	main(int ac, char **av)
 {
 	t_mlx	fract;
 
-	atexit(ll);
 	if (handle_input(ac, av, &fract))
 		message();
 	init_fract(&fract);
