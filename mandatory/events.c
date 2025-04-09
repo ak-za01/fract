@@ -6,7 +6,7 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:31:28 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/05 13:33:54 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/09 05:51:17 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	move_arrow(int key, t_mlx *fract)
 {
 	if (key == 123)
-		fract->axis_x -= 0.5 * fract->zoom;
+		fract->axis_x -= 0.1 / fract->zoom;
 	else if (key == 124)
-		fract->axis_x += 0.5 * fract->zoom;
+		fract->axis_x += 0.1 / fract->zoom;
 	if (key == 125)
-		fract->axis_y += 0.5 * fract->zoom;
+		fract->axis_y += 0.1 / fract->zoom;
 	else if (key == 126)
-		fract->axis_y -= 0.5 * fract->zoom;
+		fract->axis_y -= 0.1 / fract->zoom;
 	return (0);
 }
 
@@ -55,6 +55,8 @@ int	handle_key(int key, t_mlx *fract)
 		move_arrow(key, fract);
 	else if (key == 38 || key == 32)
 		iteration(key, fract);
+	else if (key == 12)
+		reset_fract(fract);
 	render(fract);
 	return (0);
 }
@@ -63,14 +65,10 @@ int	handle_mouse(int button, int x, int y, t_mlx *fract)
 {
 	(void)x;
 	(void)y;
-	if (button == 4)
-	{
-		fract->zoom *= 1.25;
-	}
-	else if (button == 5)
-	{
-		fract->zoom *= 0.75;
-	}
+	if (button == 5)
+		fract->zoom *= 1.8;
+	else
+		fract->zoom *= 0.8;
 	render(fract);
 	return (0);
 }

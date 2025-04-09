@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fract.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:24:43 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/07 14:41:33 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:51:07 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	handle_input(int ac, char **av, t_mlx *fract)
 	{
 		if (handle_arg(ac, av, fract) == 1)
 			message();
-		fract->flag = ((fract->title = av[1]), 3);
+		fract->flag = ((fract->title = av[1]), 1);
 	}
 	else
 		message();

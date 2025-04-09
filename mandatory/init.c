@@ -6,11 +6,20 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:42:50 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/05 11:58:21 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/09 05:47:51 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
+
+void	ft_print(char *s, int fd)
+{
+	if (s != NULL)
+	{
+		while (*s)
+			write(fd, s++, 1);
+	}
+}
 
 static void	ft_error(void)
 {
@@ -18,12 +27,20 @@ static void	ft_error(void)
 	exit(1);
 }
 
+void	reset_fract(t_mlx *fract)
+{
+	fract->iteration = 200;
+	fract->axis_x = 0;
+	fract->axis_y = 0;
+	fract->zoom = 0.25;
+}
+
 static void	init(t_mlx *fract)
 {
 	fract->iteration = 100;
 	fract->axis_x = 0.0;
 	fract->axis_y = 0.0;
-	fract->zoom = 1.0;
+	fract->zoom = 0.25;
 }
 
 void	init_fract(t_mlx *fract)

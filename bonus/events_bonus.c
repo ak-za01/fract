@@ -6,24 +6,34 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:31:28 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/08 00:48:02 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/09 05:49:19 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol_bonus.h"
-#include <stdio.h>
+
 int	move_arrow(int key, t_mlx *fract)
 {
-	// printf("");
 	if (key == 123)
-		fract->axis_x -= 0.3 * fract->zoom;
+		fract->axis_x -= 0.3 / fract->zoom;
 	else if (key == 124)
-		fract->axis_x += 0.3 * fract->zoom;
+		fract->axis_x += 0.3 / fract->zoom;
 	if (key == 125)
-		fract->axis_y += 0.3 * fract->zoom;
+		fract->axis_y += 0.3 / fract->zoom;
 	else if (key == 126)
-		fract->axis_y -= 0.3 * fract->zoom;
+		fract->axis_y -= 0.3 / fract->zoom;
 	return (0);
+}
+
+void	reset_fract(t_mlx *fract)
+{
+	fract->iteration = 200;
+	fract->axis_x = 0;
+	fract->axis_y = 0;
+	fract->zoom = 0.25;
+	fract->red = 0;
+	fract->green = 0;
+	fract->blue = 0;
 }
 
 static int	iteration(int key, t_mlx *fract)
@@ -38,7 +48,6 @@ static int	iteration(int key, t_mlx *fract)
 		fract->iteration += 50;
 	return (0);
 }
-
 int	handle_key(int key, t_mlx *fract)
 {
 	if (key == 53)
@@ -53,6 +62,8 @@ int	handle_key(int key, t_mlx *fract)
 		change_color(1, key, fract);
 	else if (key == 3 || key == 4 || key == 5)
 		change_color(0, key, fract);
+	else if (key == 12)
+		reset_fract(fract);
 	render(fract);
 	return (0);
 }

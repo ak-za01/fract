@@ -1,12 +1,11 @@
 NAME = fractol
-NAME_BONUS = fractol_bonus
 
-SRC = mandatory/main.c mandatory/utils.c mandatory/init.c mandatory/mandelbrot.c \
-		mandatory/events.c mandatory/julia.c mandatory/helper.c
+SRC = mandatory/fract.c mandatory/utils.c mandatory/init.c mandatory/render.c \
+		mandatory/events.c mandatory/helper.c
 
-SRCB = bonus/main_bonus.c bonus/utils_bonus.c bonus/init_bonus.c \
-		bonus/mandelbrot_bonus.c bonus/events_bonus.c \
-		bonus/helper_bonus.c bonus/utils3.c
+SRCB = bonus/fract_bonus.c bonus/utils_bonus.c bonus/render_bonus.c \
+		bonus/mandelbox_bonus.c bonus/events_bonus.c bonus/init_bonus.c \
+		bonus/helper_bonus.c
 OBJ = $(SRC:.c=.o)
 OBJB = $(SRCB:.c=.o)
 
@@ -36,4 +35,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME) $(NAME_BONUS)
 
-re: fclean all
+re: clean

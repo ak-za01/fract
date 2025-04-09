@@ -6,7 +6,7 @@
 /*   By: anktiri <anktiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:43:41 by anktiri           #+#    #+#             */
-/*   Updated: 2025/04/07 17:39:45 by anktiri          ###   ########.fr       */
+/*   Updated: 2025/04/09 00:43:48 by anktiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ unsigned int	get_color(int iter, t_mlx *fract)
 	int		g;
 	int		b;
 
-	if (iter == fract->iteration)
+	if (iter >= fract->iteration)
 		return (BLACK);
 	t = (double)iter / fract->iteration;
 	r = (int)(9 * (1 - t) * (1 - t) * t * 200) + fract->red;
